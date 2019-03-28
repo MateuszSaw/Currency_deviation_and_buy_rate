@@ -25,14 +25,14 @@ public class CurrencyTableWithRates {
 
     public class Rates {
 
-        String bid;
-        String ask;
+        double bid;
+        double ask;
 
-        public String getBid() {
+        public double getBid() {
             return bid;
         }
 
-        public String getAsk() {
+        public double getAsk() {
             return ask;
         }
     }

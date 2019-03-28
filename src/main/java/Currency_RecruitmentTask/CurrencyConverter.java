@@ -15,14 +15,25 @@ public class CurrencyConverter {
         String codeOfCurrency = "eur";
         String startData = "2017-11-20";
         String endData = "2017-11-24";
-        String course = jsonReader(codeOfCurrency, startData, endData).rates[0].getAsk();
-        System.out.println(course);
+
+        averageOfBidCurrency(codeOfCurrency,startData,endData);
+
     }
+        private static void averageOfBidCurrency(String codeOfCurrency, String startData, String endData) throws IOException {
+        int length  = jsonReader(codeOfCurrency,startData,endData).rates.length;
+        int count = 0;
+        double result = 0;
+        for(int i =0; i < length ; i++){
+            double course = jsonReader(codeOfCurrency, startData, endData).rates[count].getBid();
+            result += course;
+            count ++;
+        }
+            System.out.println(result /length);
+        }
 
     // Load Json Data from NBP.Api
     private static CurrencyTableWithRates jsonReader(String codeOfCurrency, String startData, String endData) throws IOException {
         String link = "http://api.nbp.pl/api/exchangerates/rates/c/" + codeOfCurrency + "/" + startData + "/" + endData + "/?format=json";
-        System.out.println(link);
         URL url = new URL(link);
         URLConnection connection = url.openConnection();
         connection.addRequestProperty("user-agent", "Mozilla");
