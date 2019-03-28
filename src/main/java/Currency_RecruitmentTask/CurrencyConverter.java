@@ -1,7 +1,5 @@
 package Currency_RecruitmentTask;
-
 import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -9,16 +7,29 @@ import java.net.URLConnection;
 import java.util.Scanner;
 
 public class CurrencyConverter {
-
     public static void main(String[] args) throws IOException {
 
         String codeOfCurrency = "eur";
         String startData = "2017-11-20";
         String endData = "2017-11-24";
+        standardDeviation(codeOfCurrency,startData,endData);
+    }
+        public static void standardDeviation (String codeOfCurrency, String startData, String endData) throws IOException {
+        int length = jsonReader(codeOfCurrency,startData,endData).rates.length;
+        int count = 0;
+        double [] currencyTable = new double[length];
+        for (int i = 0; i< length; i++){
+            double course = jsonReader(codeOfCurrency, startData, endData).rates[count].getAsk();
+            currencyTable[i] = course;
+            count ++;
+        }
+        Patterns Patterns = new Patterns(currencyTable,length);
+        double stdDev = Patterns.getStandardDeviation();
+        System.out.println(stdDev);
 
-        averageOfBidCurrency(codeOfCurrency,startData,endData);
 
     }
+    //
         private static void averageOfBidCurrency(String codeOfCurrency, String startData, String endData) throws IOException {
         int length  = jsonReader(codeOfCurrency,startData,endData).rates.length;
         int count = 0;

@@ -36,5 +36,7 @@ public class CurrencyTableWithRates {
             return ask;
         }
     }
-
 }
+
+
+
