@@ -6,7 +6,6 @@ import java.util.Arrays;
 public class CurrencyTableWithRates {
 
     String currency;
-    String code;
     Rates[] rates;
 
     @Override
